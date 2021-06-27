@@ -39,6 +39,14 @@ const Navbar = () => {
                 >
                     All Users
                 </NavLink>
+                <NavLink
+                    to="/addPosts"
+                    exact
+                    activeClassName="border-b-2 border-grash"
+                    className="mx-4 py-2 uppercase inline-block text-xs font-bold hover:border-b-2 hover:border-grash"
+                >
+                    Add Posts
+                </NavLink>
                
             </div>
         </nav >

@@ -1,14 +1,27 @@
+import { createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar.js";
+import AddPosts from './Pages/AddPosts.js';
 import AllUsers from './Pages/AllUsers.js';
 import Posts from './Pages/Posts.js';
 import Profile from './Pages/Profile.js';
+import SinglePostDetails from './Pages/SinglePostDetails.js';
 
-
+export const UserContext = createContext()
 
 function App() {
+  const [posts, setPosts] = useState([]);
+  useEffect(()=>{
+    const loadData = async () => {
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts?userId=2')
+        const data = await res.json()
+        setPosts(data)
+    }
+    loadData();
+},[])
   return (
-<BrowserRouter>
+   <UserContext.Provider value={[posts, setPosts]}>
+     <BrowserRouter>
       <Navbar />
       <Switch>
          <Route exact path="/">
@@ -23,8 +36,15 @@ function App() {
         <Route path="/allUsers">
           <AllUsers />
         </Route>
+        <Route path="/addPosts">
+          <AddPosts />
+        </Route>
+        <Route path="/post/:id">
+          <SinglePostDetails />
+        </Route>
       </Switch>
     </BrowserRouter>
+   </UserContext.Provider>
     
   );
 }
