@@ -16,12 +16,28 @@ const Navbar = () => {
             </div>
             <div className={`my-2 ${showDropdown ? 'flex flex-col' : 'hidden'} md:block`}>
                 <NavLink
-                    to="/"
+                    to="/posts"
                     exact
                     activeClassName="border-b-2 border-grash"
                     className="mx-4 py-2 uppercase inline-block text-xs font-bold hover:border-b-2 hover:border-grash"
                 >
-                    Home
+                    Posts
+                </NavLink>
+                <NavLink
+                    to="/profile"
+                    exact
+                    activeClassName="border-b-2 border-grash"
+                    className="mx-4 py-2 uppercase inline-block text-xs font-bold hover:border-b-2 hover:border-grash"
+                >
+                    Profile
+                </NavLink>
+                <NavLink
+                    to="/allUsers"
+                    exact
+                    activeClassName="border-b-2 border-grash"
+                    className="mx-4 py-2 uppercase inline-block text-xs font-bold hover:border-b-2 hover:border-grash"
+                >
+                    All Users
                 </NavLink>
                
             </div>

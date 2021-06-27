@@ -1,5 +1,8 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar.js";
+import AllUsers from './Pages/AllUsers.js';
+import Posts from './Pages/Posts.js';
+import Profile from './Pages/Profile.js';
 
 
 
@@ -8,27 +11,18 @@ function App() {
 <BrowserRouter>
       <Navbar />
       <Switch>
-        {/* <Route exact path="/">
-            <Home />
+         <Route exact path="/">
+            <Posts />
         </Route>
-        <Route path="/login">
-          <Login />
+        <Route path="/posts">
+          <Posts />
         </Route>
-        <Route path="/register">
-          <Register />
+        <Route path="/profile">
+          <Profile />
         </Route>
-        <Route path="/addAdmin">
-          <AddAdmin />
+        <Route path="/allUsers">
+          <AllUsers />
         </Route>
-        <Route path="/addBlog">
-          <AddBlog />
-        </Route>
-        <Route path="/manageBlog">
-          <ManageBlog />
-        </Route>
-        <Route path="/blog/:id">
-          <SingleBlog />
-        </Route> */}
       </Switch>
     </BrowserRouter>
     
