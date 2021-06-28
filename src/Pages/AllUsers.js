@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const AllUsers = () => {
     const[ users, setUsers] = useState([])
-    const [sort, setSort] = useState('asc');
+    const [sort, setSort] = useState('');
     const[currentPage, setCurrentPage] = useState(1);
-    const[postsPerPage, setPostsPerPage] = useState(5);
+    const[postsPerPage, setPostsPerPage] = useState(3);
     const pageNumbers = [];
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     for (let i =1; i <= Math.ceil(users.length / postsPerPage); i++){
         pageNumbers.push(i)
@@ -48,8 +50,18 @@ const AllUsers = () => {
     return (
         <div className="pt-24 text-center">
             <h1>All Users</h1>
+            <div>
             <button className="btn" onClick={() => handleSorted('asc')}>ASC</button>
             <button className="btn" onClick={() => handleSorted('dsc')}>DSC</button>
+            </div>
+            <div>
+                <select onChange={(e) => setPostsPerPage(parseInt(e.target.value))}>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value={users.length}>All</option>
+                </select>
+            </div>
+           
             <div className="flex justify-between px-12 py-4 bg-gray-400 text-white">
                 <h1>Name</h1>
                 <h1>Email</h1>
@@ -63,14 +75,14 @@ const AllUsers = () => {
             <div>
                 {currentPosts.map(user => 
                    <div className="flex justify-between px-12 py-4"> 
-                        <h1>{user.name}</h1>
+                        <Link to={`/user/${user.id}`}>{user.name}</Link>
                         <h1>{user.email}</h1>
                         <h1>{user.website}</h1>
                    </div> )}
             </div>
-            <div>
+            <div className="flex">
                 {pageNumbers.map(pageNumber => (
-                    <button>{pageNumber}</button>
+                    <button className="btn" onClick={() => paginate(pageNumber)}>{pageNumber}</button>
                 ))}
             </div>
         </div>

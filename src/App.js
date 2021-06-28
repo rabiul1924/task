@@ -6,6 +6,7 @@ import AllUsers from './Pages/AllUsers.js';
 import Posts from './Pages/Posts.js';
 import Profile from './Pages/Profile.js';
 import SinglePostDetails from './Pages/SinglePostDetails.js';
+import SingleUserDetails from './Pages/SingleUserDetails.js';
 
 export const UserContext = createContext()
 
@@ -41,6 +42,9 @@ function App() {
         </Route>
         <Route path="/post/:id">
           <SinglePostDetails />
+        </Route>
+        <Route path="/user/:id">
+          <SingleUserDetails />
         </Route>
       </Switch>
     </BrowserRouter>
