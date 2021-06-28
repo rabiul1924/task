@@ -1,9 +1,19 @@
 import React, { useContext, useState } from 'react';
-import { UserContext } from "../App.js"
+import { useParams } from 'react-router-dom';
+import { UserContext } from '../App';
 
-const AddPosts = () => {
+const UpdatePost = () => {
+
+    const { id } = useParams();
+
+    //Get context api data
     const [posts, setPosts] = useContext(UserContext)
-    const [updatedInfo, setUpdatedInfo] = useState({ title: "", body: "" })
+    // FInd the post which will be updating
+    const updatingPost = posts.find(post => post.id === parseInt(id));
+    //Find the index of the post which have been updated
+    const updatingPostIndex = posts.findIndex(post => post.id === parseInt(id));
+
+    const [updatedInfo, setUpdatedInfo] = useState({ title: updatingPost.title, body: updatingPost.body })
 
     const handleChange = e => {
         setUpdatedInfo({
@@ -14,7 +24,11 @@ const AddPosts = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setPosts([...posts, updatedInfo])
+        setPosts([
+            ...posts,
+            posts[updatingPostIndex].title = updatedInfo.title,
+            posts[updatingPostIndex].body = updatedInfo.body
+        ])
     }
 
     return (
@@ -28,23 +42,21 @@ const AddPosts = () => {
                     onChange={handleChange}
                     type="text"
                     placeholder="title"
+                    value={updatedInfo.title}
                     className="w-full rounded-full mb-4 py-3 px-8 ring-0 focus:outline-none border border-gray-700"
                 />
                 <input
                     name="body"
                     onChange={handleChange}
-                    type="text" placeholder="body"
+                    type="text"
+                    placeholder="body"
+                    value={updatedInfo.body}
                     className="w-full rounded-full mb-4 py-3 px-8 ring-0 focus:outline-none border border-gray-700"
                 />
-                <button
-                    type="submit"
-                    className="btn"
-                >
-                    Add Post
-                </button>
+                <button type="submit" className="btn">Update</button>
             </form>
         </div>
     );
 };
 
-export default AddPosts;
+export default UpdatePost;

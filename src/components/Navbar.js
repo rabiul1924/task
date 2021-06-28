@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 const Navbar = () => {
     const [showDropdown, setShowDropDown] = useState(false)
     return (
         <nav className="md:col-span-1 md:flex md:justify-between fixed w-full px-4 bg-white shadow-sm py-4">
             <div className="flex justify-between items-center">
-                <NavLink to="/">
-                    TAsk
+                <NavLink to="/" className="text-lg font-bold italic">
+                    Task
                 </NavLink>
                 <div className="px-4 cursor-pointer md:hidden" onClick={() => setShowDropDown(!showDropdown)}>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -16,7 +16,7 @@ const Navbar = () => {
             </div>
             <div className={`my-2 ${showDropdown ? 'flex flex-col' : 'hidden'} md:block`}>
                 <NavLink
-                    to="/posts"
+                    to="/"
                     exact
                     activeClassName="border-b-2 border-grash"
                     className="mx-4 py-2 uppercase inline-block text-xs font-bold hover:border-b-2 hover:border-grash"
@@ -47,7 +47,7 @@ const Navbar = () => {
                 >
                     Add Posts
                 </NavLink>
-               
+
             </div>
         </nav >
     );
