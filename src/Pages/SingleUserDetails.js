@@ -18,7 +18,7 @@ const SingleUserDetails = () => {
 
     //loading dynamic user post
     useEffect(() => {
-        fetch(`http://jsonplaceholder.typicode.com/users/${id}/posts`)
+        fetch(`https://jsonplaceholder.typicode.com/users/${id}/posts`)
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [id])
