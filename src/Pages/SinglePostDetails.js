@@ -10,14 +10,14 @@ const SinglePostDetails = () => {
 
     //loading user comments
     useEffect(() => {
-        fetch(`http://jsonplaceholder.typicode.com/posts/${id}/comments`)
+        fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
             .then(res => res.json())
             .then(data => setComments(data))
     }, [id])
 
     //loading posts
     useEffect(() => {
-        fetch(`http://jsonplaceholder.typicode.com/posts/${id}`)
+        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
             .then(res => res.json())
             .then(data => setPost(data))
     }, [id])
